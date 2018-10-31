@@ -31,17 +31,19 @@ var split = String.prototype.split;
 // The string that separates the different phrase possibilities.
 var delimiter = '||||';
 
+
 var russianPluralGroups = function (n) {
   var lastTwo = n % 100;
   var end = lastTwo % 10;
   if (lastTwo !== 11 && end === 1) {
     return 0;
   }
-  if (2 <= end && end <= 4 && !(lastTwo >= 12 && lastTwo <= 14)) {
+  if (end >= 2 && end <= 4 && !(lastTwo >= 12 && lastTwo <= 14)) {
     return 1;
   }
   return 2;
 };
+
 
 // Mapping from pluralization group plural logic.
 var pluralTypes = {
@@ -69,7 +71,7 @@ var pluralTypes = {
   polish: function (n) {
     if (n === 1) { return 0; }
     var end = n % 10;
-    return 2 <= end && end <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2;
+    return end >= 2 && end <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2;
   },
   icelandic: function (n) { return (n % 10 !== 1 || n % 100 === 11) ? 1 : 0; },
   slovenian: function (n) {
@@ -106,6 +108,7 @@ var pluralTypeToLanguages = {
   slovenian: ['sl-SL']
 };
 
+
 function langToTypeMap(mapping) {
   var ret = {};
   forEach(mapping, function (langs, type) {
@@ -116,6 +119,7 @@ function langToTypeMap(mapping) {
   return ret;
 }
 
+
 function pluralTypeName(locale) {
   var langToPluralType = langToTypeMap(pluralTypeToLanguages);
   return langToPluralType[locale]
@@ -123,13 +127,16 @@ function pluralTypeName(locale) {
     || langToPluralType.en;
 }
 
+
 function pluralTypeIndex(locale, count) {
   return pluralTypes[pluralTypeName(locale)](count);
 }
 
+
 function escape(token) {
   return token.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
+
 
 function constructTokenRegex(opts) {
   var prefix = (opts && opts.prefix) || '%{';
@@ -142,9 +149,11 @@ function constructTokenRegex(opts) {
   return new RegExp(escape(prefix) + '(.*?)' + escape(suffix), 'g');
 }
 
+
 var dollarRegex = /\$/g;
 var dollarBillsYall = '$$';
 var defaultTokenRegex = /%\{(.*?)\}/g;
+
 
 // ### transformPhrase(phrase, substitutions, locale)
 //
@@ -202,6 +211,7 @@ function transformPhrase(phrase, substitutions, locale, tokenRegex) {
   return result;
 }
 
+
 // ### Polyglot class constructor
 function Polyglot(options) {
   var opts = options || {};
@@ -214,6 +224,7 @@ function Polyglot(options) {
   this.tokenRegex = constructTokenRegex(opts.interpolation);
 }
 
+
 // ### polyglot.locale([locale])
 //
 // Get or set locale. Internally, Polyglot only uses locale for pluralization.
@@ -221,6 +232,7 @@ Polyglot.prototype.locale = function (newLocale) {
   if (newLocale) this.currentLocale = newLocale;
   return this.currentLocale;
 };
+
 
 // ### polyglot.extend(phrases)
 //
@@ -282,6 +294,7 @@ Polyglot.prototype.extend = function (morePhrases, prefix) {
   }, this);
 };
 
+
 // ### polyglot.unset(phrases)
 // Use `unset` to selectively remove keys from a polyglot instance.
 //
@@ -308,6 +321,7 @@ Polyglot.prototype.unset = function (morePhrases, prefix) {
   }
 };
 
+
 // ### polyglot.clear()
 //
 // Clears all phrases. Useful for special cases, such as freeing
@@ -316,6 +330,7 @@ Polyglot.prototype.unset = function (morePhrases, prefix) {
 Polyglot.prototype.clear = function () {
   this.phrases = {};
 };
+
 
 // ### polyglot.replace(phrases)
 //
@@ -381,9 +396,11 @@ Polyglot.prototype.has = function (key) {
   return has(this.phrases, key);
 };
 
+
 // export transformPhrase
 Polyglot.transformPhrase = function transform(phrase, substitutions, locale) {
   return transformPhrase(phrase, substitutions, locale);
 };
+
 
 export default Polyglot;

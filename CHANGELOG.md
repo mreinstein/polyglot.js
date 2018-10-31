@@ -1,3 +1,10 @@
+### v3.0.0: October 31, 2018
+ * fork from https://github.com/airbnb/polyglot.js/releases/tag/v2.3.0
+ * support es modules via the package.module field https://github.com/rollup/rollup/wiki/pkg.module
+ * remove super old node versions and add newest ones to travis ci
+ * replace deprecated npm publish event with publishOnly
+ * remove outdated Makefile in favor of npm script based commands
+
 ### v2.3.0: July 2, 2018
  * [New] add ability to change interpolation regex by specifying prefix and suffix (#106, #64)
  * [New] support for Serbian (Latin & Cyrillic), Bosnian (Latin & Cyrillic), Czech (#113)
