@@ -1,3 +1,7 @@
+### v3.0.1: November 1, 2018
+ * fix a bug that prevented the es modules bundle from being usable
+ * rename the es module and commonjs bundle files
+
 ### v3.0.0: October 31, 2018
  * fork from https://github.com/airbnb/polyglot.js/releases/tag/v2.3.0
  * support es modules via the package.module field https://github.com/rollup/rollup/wiki/pkg.module
