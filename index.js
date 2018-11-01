@@ -15,10 +15,11 @@
 // your client- or server-side JavaScript application.
 //
 
-var forEach = require('for-each');
-var warning = require('warning');
-var has = require('has');
-var trim = require('string.prototype.trim');
+import forEach from 'for-each';
+import warning from 'warning';
+import has from 'has';
+import trim from 'string.prototype.trim';
+
 
 var warn = function warn(message) {
   warning(false, message);
