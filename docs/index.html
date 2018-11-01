@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>polyglot.js</title>
+  <title>index.js</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -10,20 +10,20 @@
 <body>
   <div id="container">
     <div id="background"></div>
-
+    
     <ul class="sections">
-
+        
           <li id="title">
               <div class="annotation">
-                  <h1>polyglot.js</h1>
+                  <h1>index.js</h1>
               </div>
           </li>
-
-
-
+        
+        
+        
         <li id="section-1">
             <div class="annotation">
-
+              
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
@@ -31,8 +31,7 @@
 
 polyglot.js may be freely distributed under the terms <span class="hljs-keyword">of</span> the BSD
 license. For all licensing information, details, and documention:
-http:<span class="hljs-comment">//airbnb.github.com/polyglot.js</span>
-</code></pre><p>Polyglot.js is an I18n helper library written in JavaScript, made to
+http:<span class="hljs-comment">//airbnb.github.com/polyglot.js</span></code></pre><p>Polyglot.js is an I18n helper library written in JavaScript, made to
 work both in the browser and in Node. It provides a simple solution for
 interpolation and pluralization, based off of Airbnb’s
 experience adding I18n functionality to its Backbone.js and Node apps.</p>
@@ -41,14 +40,13 @@ translation; it simply gives you a way to manage translated phrases from
 your client- or server-side JavaScript application.</p>
 
             </div>
+            
+            <div class="content"><div class='highlight'><pre>
+<span class="hljs-keyword">import</span> forEach <span class="hljs-keyword">from</span> <span class="hljs-string">'for-each'</span>;
+<span class="hljs-keyword">import</span> warning <span class="hljs-keyword">from</span> <span class="hljs-string">'warning'</span>;
+<span class="hljs-keyword">import</span> has <span class="hljs-keyword">from</span> <span class="hljs-string">'has'</span>;
+<span class="hljs-keyword">import</span> trim <span class="hljs-keyword">from</span> <span class="hljs-string">'string.prototype.trim'</span>;
 
-            <div class="content"><div class='highlight'><pre><span class="hljs-meta">
-'use strict'</span>;
-
-<span class="hljs-keyword">var</span> forEach = <span class="hljs-built_in">require</span>(<span class="hljs-string">'for-each'</span>);
-<span class="hljs-keyword">var</span> warning = <span class="hljs-built_in">require</span>(<span class="hljs-string">'warning'</span>);
-<span class="hljs-keyword">var</span> has = <span class="hljs-built_in">require</span>(<span class="hljs-string">'has'</span>);
-<span class="hljs-keyword">var</span> trim = <span class="hljs-built_in">require</span>(<span class="hljs-string">'string.prototype.trim'</span>);
 
 <span class="hljs-keyword">var</span> warn = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">warn</span>(<span class="hljs-params">message</span>) </span>{
   warning(<span class="hljs-literal">false</span>, message);
@@ -56,13 +54,13 @@ your client- or server-side JavaScript application.</p>
 
 <span class="hljs-keyword">var</span> replace = <span class="hljs-built_in">String</span>.prototype.replace;
 <span class="hljs-keyword">var</span> split = <span class="hljs-built_in">String</span>.prototype.split;</pre></div></div>
-
+            
         </li>
-
-
+        
+        
         <li id="section-2">
             <div class="annotation">
-
+              
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
@@ -70,49 +68,51 @@ your client- or server-side JavaScript application.</p>
 <p>The string that separates the different phrase possibilities.</p>
 
             </div>
-
+            
             <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> delimiter = <span class="hljs-string">'||||'</span>;
 
+
 <span class="hljs-keyword">var</span> russianPluralGroups = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) </span>{
-  <span class="hljs-keyword">var</span> end = n % <span class="hljs-number">10</span>;
-  <span class="hljs-keyword">if</span> (n !== <span class="hljs-number">11</span> &amp;&amp; end === <span class="hljs-number">1</span>) {
+  <span class="hljs-keyword">var</span> lastTwo = n % <span class="hljs-number">100</span>;
+  <span class="hljs-keyword">var</span> end = lastTwo % <span class="hljs-number">10</span>;
+  <span class="hljs-keyword">if</span> (lastTwo !== <span class="hljs-number">11</span> &amp;&amp; end === <span class="hljs-number">1</span>) {
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
   }
-  <span class="hljs-keyword">if</span> (<span class="hljs-number">2</span> &lt;= end &amp;&amp; end &lt;= <span class="hljs-number">4</span> &amp;&amp; !(n &gt;= <span class="hljs-number">12</span> &amp;&amp; n &lt;= <span class="hljs-number">14</span>)) {
+  <span class="hljs-keyword">if</span> (end &gt;= <span class="hljs-number">2</span> &amp;&amp; end &lt;= <span class="hljs-number">4</span> &amp;&amp; !(lastTwo &gt;= <span class="hljs-number">12</span> &amp;&amp; lastTwo &lt;= <span class="hljs-number">14</span>)) {
     <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
   }
   <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>;
 };</pre></div></div>
-
+            
         </li>
-
-
+        
+        
         <li id="section-3">
             <div class="annotation">
-
+              
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
               <p>Mapping from pluralization group plural logic.</p>
 
             </div>
-
+            
             <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> pluralTypes = {
   <span class="hljs-attr">arabic</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) </span>{</pre></div></div>
-
+            
         </li>
-
-
+        
+        
         <li id="section-4">
             <div class="annotation">
-
+              
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
               <p><a href="http://www.arabeyes.org/Plural_Forms">http://www.arabeyes.org/Plural_Forms</a></p>
 
             </div>
-
+            
             <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">3</span>) { <span class="hljs-keyword">return</span> n; }
     <span class="hljs-keyword">var</span> lastTwo = n % <span class="hljs-number">100</span>;
     <span class="hljs-keyword">if</span> (lastTwo &gt;= <span class="hljs-number">3</span> &amp;&amp; lastTwo &lt;= <span class="hljs-number">10</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
@@ -135,7 +135,7 @@ your client- or server-side JavaScript application.</p>
   <span class="hljs-attr">polish</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) </span>{
     <span class="hljs-keyword">if</span> (n === <span class="hljs-number">1</span>) { <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; }
     <span class="hljs-keyword">var</span> end = n % <span class="hljs-number">10</span>;
-    <span class="hljs-keyword">return</span> <span class="hljs-number">2</span> &lt;= end &amp;&amp; end &lt;= <span class="hljs-number">4</span> &amp;&amp; (n % <span class="hljs-number">100</span> &lt; <span class="hljs-number">10</span> || n % <span class="hljs-number">100</span> &gt;= <span class="hljs-number">20</span>) ? <span class="hljs-number">1</span> : <span class="hljs-number">2</span>;
+    <span class="hljs-keyword">return</span> end &gt;= <span class="hljs-number">2</span> &amp;&amp; end &lt;= <span class="hljs-number">4</span> &amp;&amp; (n % <span class="hljs-number">100</span> &lt; <span class="hljs-number">10</span> || n % <span class="hljs-number">100</span> &gt;= <span class="hljs-number">20</span>) ? <span class="hljs-number">1</span> : <span class="hljs-number">2</span>;
   },
   <span class="hljs-attr">icelandic</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) </span>{ <span class="hljs-keyword">return</span> (n % <span class="hljs-number">10</span> !== <span class="hljs-number">1</span> || n % <span class="hljs-number">100</span> === <span class="hljs-number">11</span>) ? <span class="hljs-number">1</span> : <span class="hljs-number">0</span>; },
   <span class="hljs-attr">slovenian</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">n</span>) </span>{
@@ -152,13 +152,13 @@ your client- or server-side JavaScript application.</p>
     <span class="hljs-keyword">return</span> <span class="hljs-number">3</span>;
   }
 };</pre></div></div>
-
+            
         </li>
-
-
+        
+        
         <li id="section-5">
             <div class="annotation">
-
+              
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
@@ -167,7 +167,7 @@ Will look up based on exact match, if not found and it’s a locale will parse t
 for language code, and if that does not exist will default to ‘en’</p>
 
             </div>
-
+            
             <div class="content"><div class='highlight'><pre>var pluralTypeToLanguages = {
   arabic: ['ar'],
   bosnian_serbian: ['bs-Latn-BA', 'bs-Cyrl-BA', 'srl-RS', 'sr-RS'],
@@ -183,6 +183,7 @@ for language code, and if that does not exist will default to ‘en’</p>
   slovenian: ['sl-SL']
 };
 
+
 function langToTypeMap(mapping) {
   var ret = {};
   forEach(mapping, function (langs, type) {
@@ -193,6 +194,7 @@ function langToTypeMap(mapping) {
   return ret;
 }
 
+
 function pluralTypeName(locale) {
   var langToPluralType = langToTypeMap(pluralTypeToLanguages);
   return langToPluralType[locale]
@@ -200,13 +202,16 @@ function pluralTypeName(locale) {
     || langToPluralType.en;
 }
 
+
 function pluralTypeIndex(locale, count) {
   return pluralTypes[pluralTypeName(locale)](count);
 }
 
+
 function escape(token) {
   return token.replace(/[.*+?^${}()|[\]\\]/g, '\\$&amp;');
 }
+
 
 function constructTokenRegex(opts) {
   var prefix = (opts &amp;&amp; opts.prefix) || '%{';
@@ -219,16 +224,17 @@ function constructTokenRegex(opts) {
   return new RegExp(escape(prefix) + '(.*?)' + escape(suffix), 'g');
 }
 
+
 var dollarRegex = /\$/g;
 var dollarBillsYall = '$$';
 var defaultTokenRegex = /%\{(.*?)\}/g;</pre></div></div>
-
+            
         </li>
-
-
+        
+        
         <li id="section-6">
             <div class="annotation">
-
+              
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
@@ -236,8 +242,7 @@ var defaultTokenRegex = /%\{(.*?)\}/g;</pre></div></div>
 <p>Takes a phrase string and transforms it by choosing the correct
 plural form and interpolating it.</p>
 <pre><code>transformPhrase(<span class="hljs-string">'Hello, %{name}!'</span>, {<span class="hljs-attr">name</span>: <span class="hljs-string">'Spike'</span>});
-<span class="hljs-comment">// "Hello, Spike!"</span>
-</code></pre><p>The correct plural form is selected if substitutions.smart_count
+<span class="hljs-comment">// "Hello, Spike!"</span></code></pre><p>The correct plural form is selected if substitutions.smart_count
 is set. You can pass in a number instead of an Object as <code>substitutions</code>
 as a shortcut for <code>smart_count</code>.</p>
 <pre><code>transformPhrase(<span class="hljs-string">'%{smart_count} new messages |||| 1 new message'</span>, {<span class="hljs-attr">smart_count</span>: <span class="hljs-number">1</span>}, <span class="hljs-string">'en'</span>);
@@ -247,12 +252,11 @@ transformPhrase(<span class="hljs-string">'%{smart_count} new messages |||| 1 ne
 <span class="hljs-comment">// "2 new messages"</span>
 
 transformPhrase(<span class="hljs-string">'%{smart_count} new messages |||| 1 new message'</span>, <span class="hljs-number">5</span>, <span class="hljs-string">'en'</span>);
-<span class="hljs-comment">// "5 new messages"</span>
-</code></pre><p>You should pass in a third argument, the locale, to specify the correct plural type.
+<span class="hljs-comment">// "5 new messages"</span></code></pre><p>You should pass in a third argument, the locale, to specify the correct plural type.
 It defaults to <code>&#39;en&#39;</code> with 2 plural forms.</p>
 
             </div>
-
+            
             <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transformPhrase</span>(<span class="hljs-params">phrase, substitutions, locale, tokenRegex</span>) </span>{
   <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> phrase !== <span class="hljs-string">'string'</span>) {
     <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">'Polyglot.transformPhrase expects argument #1 to be string'</span>);
@@ -264,28 +268,28 @@ It defaults to <code>&#39;en&#39;</code> with 2 plural forms.</p>
 
   <span class="hljs-keyword">var</span> result = phrase;
   <span class="hljs-keyword">var</span> interpolationRegex = tokenRegex || defaultTokenRegex;</pre></div></div>
-
+            
         </li>
-
-
+        
+        
         <li id="section-7">
             <div class="annotation">
-
+              
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
               <p>allow number as a pluralization shortcut</p>
 
             </div>
-
+            
             <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> options = <span class="hljs-keyword">typeof</span> substitutions === <span class="hljs-string">'number'</span> ? { <span class="hljs-attr">smart_count</span>: substitutions } : substitutions;</pre></div></div>
-
+            
         </li>
-
-
+        
+        
         <li id="section-8">
             <div class="annotation">
-
+              
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
@@ -294,60 +298,60 @@ plural forms separated by <code>delimiter</code>, a <code>locale</code>, and a <
 choose the correct plural form. This is only done if <code>count</code> is set.</p>
 
             </div>
-
+            
             <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">if</span> (options.smart_count != <span class="hljs-literal">null</span> &amp;&amp; result) {
     <span class="hljs-keyword">var</span> texts = split.call(result, delimiter);
     result = trim(texts[pluralTypeIndex(locale || <span class="hljs-string">'en'</span>, options.smart_count)] || texts[<span class="hljs-number">0</span>]);
   }</pre></div></div>
-
+            
         </li>
-
-
+        
+        
         <li id="section-9">
             <div class="annotation">
-
+              
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
               <p>Interpolate: Creates a <code>RegExp</code> object for each interpolation placeholder.</p>
 
             </div>
-
+            
             <div class="content"><div class='highlight'><pre>  result = replace.call(result, interpolationRegex, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">expression, argument</span>) </span>{
     <span class="hljs-keyword">if</span> (!has(options, argument) || options[argument] == <span class="hljs-literal">null</span>) { <span class="hljs-keyword">return</span> expression; }</pre></div></div>
-
+            
         </li>
-
-
+        
+        
         <li id="section-10">
             <div class="annotation">
-
+              
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
               <p>Ensure replacement value is escaped to prevent special $-prefixed regex replace tokens.</p>
 
             </div>
-
+            
             <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">return</span> replace.call(options[argument], dollarRegex, dollarBillsYall);
   });
 
   <span class="hljs-keyword">return</span> result;
 }</pre></div></div>
-
+            
         </li>
-
-
+        
+        
         <li id="section-11">
             <div class="annotation">
-
+              
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
               <h3 id="polyglot-class-constructor">Polyglot class constructor</h3>
 
             </div>
-
+            
             <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Polyglot</span>(<span class="hljs-params">options</span>) </span>{
   <span class="hljs-keyword">var</span> opts = options || {};
   <span class="hljs-keyword">this</span>.phrases = {};
@@ -358,13 +362,13 @@ choose the correct plural form. This is only done if <code>count</code> is set.<
   <span class="hljs-keyword">this</span>.warn = opts.warn || warn;
   <span class="hljs-keyword">this</span>.tokenRegex = constructTokenRegex(opts.interpolation);
 }</pre></div></div>
-
+            
         </li>
-
-
+        
+        
         <li id="section-12">
             <div class="annotation">
-
+              
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
@@ -372,18 +376,18 @@ choose the correct plural form. This is only done if <code>count</code> is set.<
 <p>Get or set locale. Internally, Polyglot only uses locale for pluralization.</p>
 
             </div>
-
+            
             <div class="content"><div class='highlight'><pre>Polyglot.prototype.locale = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">newLocale</span>) </span>{
   <span class="hljs-keyword">if</span> (newLocale) <span class="hljs-keyword">this</span>.currentLocale = newLocale;
   <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.currentLocale;
 };</pre></div></div>
-
+            
         </li>
-
-
+        
+        
         <li id="section-13">
             <div class="annotation">
-
+              
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
@@ -392,8 +396,7 @@ choose the correct plural form. This is only done if <code>count</code> is set.<
 <pre><code>polyglot.extend({
   <span class="hljs-string">"hello"</span>: <span class="hljs-string">"Hello"</span>,
   <span class="hljs-string">"hello_name"</span>: <span class="hljs-string">"Hello, %{name}"</span>
-});
-</code></pre><p>The key can be any string.  Feel free to call <code>extend</code> multiple times;
+});</code></pre><p>The key can be any string.  Feel free to call <code>extend</code> multiple times;
 it will override any phrases with the same key, but leave existing phrases
 untouched.</p>
 <p>It is also possible to pass nested phrase objects, which get flattened
@@ -413,8 +416,7 @@ into an object with the nested keys concatenated using dot notation.</p>
 <span class="hljs-comment">//   'nav.hello': 'Hello',</span>
 <span class="hljs-comment">//   'nav.hello_name': 'Hello, %{name}',</span>
 <span class="hljs-comment">//   'nav.sidebar.welcome': 'Welcome'</span>
-<span class="hljs-comment">// }</span>
-</code></pre><p><code>extend</code> accepts an optional second argument, <code>prefix</code>, which can be used
+<span class="hljs-comment">// }</span></code></pre><p><code>extend</code> accepts an optional second argument, <code>prefix</code>, which can be used
 to prefix every key in the phrases object with some string, using dot
 notation.</p>
 <pre><code>polyglot.extend({
@@ -426,11 +428,10 @@ notation.</p>
 <span class="hljs-comment">// {</span>
 <span class="hljs-comment">//   'nav.hello': 'Hello',</span>
 <span class="hljs-comment">//   'nav.hello_name': 'Hello, %{name}'</span>
-<span class="hljs-comment">// }</span>
-</code></pre><p>This feature is used internally to support nested phrase objects.</p>
+<span class="hljs-comment">// }</span></code></pre><p>This feature is used internally to support nested phrase objects.</p>
 
             </div>
-
+            
             <div class="content"><div class='highlight'><pre>Polyglot.prototype.extend = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">morePhrases, prefix</span>) </span>{
   forEach(morePhrases, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">phrase, key</span>) </span>{
     <span class="hljs-keyword">var</span> prefixedKey = prefix ? prefix + <span class="hljs-string">'.'</span> + key : key;
@@ -441,13 +442,13 @@ notation.</p>
     }
   }, <span class="hljs-keyword">this</span>);
 };</pre></div></div>
-
+            
         </li>
-
-
+        
+        
         <li id="section-14">
             <div class="annotation">
-
+              
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
@@ -457,12 +458,11 @@ notation.</p>
 polyglot.unset({
   <span class="hljs-string">"hello"</span>: <span class="hljs-string">"Hello"</span>,
   <span class="hljs-string">"hello_name"</span>: <span class="hljs-string">"Hello, %{name}"</span>
-});
-</code></pre><p>The unset method can take either a string (for the key), or an object hash with
+});</code></pre><p>The unset method can take either a string (for the key), or an object hash with
 the keys that you would like to unset.</p>
 
             </div>
-
+            
             <div class="content"><div class='highlight'><pre>Polyglot.prototype.unset = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">morePhrases, prefix</span>) </span>{
   <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> morePhrases === <span class="hljs-string">'string'</span>) {
     <span class="hljs-keyword">delete</span> <span class="hljs-keyword">this</span>.phrases[morePhrases];
@@ -477,13 +477,13 @@ the keys that you would like to unset.</p>
     }, <span class="hljs-keyword">this</span>);
   }
 };</pre></div></div>
-
+            
         </li>
-
-
+        
+        
         <li id="section-15">
             <div class="annotation">
-
+              
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
@@ -493,17 +493,17 @@ up memory if you have lots of phrases but no longer need to
 perform any translation. Also used internally by <code>replace</code>.</p>
 
             </div>
-
+            
             <div class="content"><div class='highlight'><pre>Polyglot.prototype.clear = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
   <span class="hljs-keyword">this</span>.phrases = {};
 };</pre></div></div>
-
+            
         </li>
-
-
+        
+        
         <li id="section-16">
             <div class="annotation">
-
+              
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
@@ -513,18 +513,18 @@ Normally, just use <code>extend</code> to add more phrases, but under certain
 circumstances, you may want to make sure no old phrases are lying around.</p>
 
             </div>
-
+            
             <div class="content"><div class='highlight'><pre>Polyglot.prototype.replace = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">newPhrases</span>) </span>{
   <span class="hljs-keyword">this</span>.clear();
   <span class="hljs-keyword">this</span>.extend(newPhrases);
 };</pre></div></div>
-
+            
         </li>
-
-
+        
+        
         <li id="section-17">
             <div class="annotation">
-
+              
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
@@ -532,22 +532,19 @@ circumstances, you may want to make sure no old phrases are lying around.</p>
 <p>The most-used method. Provide a key, and <code>t</code> will return the
 phrase.</p>
 <pre><code>polyglot.t(<span class="hljs-string">"hello"</span>);
-=&gt; <span class="hljs-string">"Hello"</span>
-</code></pre><p>The phrase value is provided first by a call to <code>polyglot.extend()</code> or
+=&gt; <span class="hljs-string">"Hello"</span></code></pre><p>The phrase value is provided first by a call to <code>polyglot.extend()</code> or
 <code>polyglot.replace()</code>.</p>
 <p>Pass in an object as the second argument to perform interpolation.</p>
 <pre><code>polyglot.t(<span class="hljs-string">"hello_name"</span>, {<span class="hljs-attr">name</span>: <span class="hljs-string">"Spike"</span>});
-=&gt; <span class="hljs-string">"Hello, Spike"</span>
-</code></pre><p>If you like, you can provide a default value in case the phrase is missing.
+=&gt; <span class="hljs-string">"Hello, Spike"</span></code></pre><p>If you like, you can provide a default value in case the phrase is missing.
 Use the special option key “_” to specify a default.</p>
 <pre><code>polyglot.t(<span class="hljs-string">"i_like_to_write_in_language"</span>, {
   <span class="hljs-attr">_</span>: <span class="hljs-string">"I like to write in %{language}."</span>,
   <span class="hljs-attr">language</span>: <span class="hljs-string">"JavaScript"</span>
 });
-=&gt; <span class="hljs-string">"I like to write in JavaScript."</span>
-</code></pre>
+=&gt; <span class="hljs-string">"I like to write in JavaScript."</span></code></pre>
             </div>
-
+            
             <div class="content"><div class='highlight'><pre>Polyglot.prototype.t = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">key, options</span>) </span>{
   <span class="hljs-keyword">var</span> phrase, result;
   <span class="hljs-keyword">var</span> opts = options == <span class="hljs-literal">null</span> ? {} : options;
@@ -567,13 +564,13 @@ Use the special option key “_” to specify a default.</p>
   }
   <span class="hljs-keyword">return</span> result;
 };</pre></div></div>
-
+            
         </li>
-
-
+        
+        
         <li id="section-18">
             <div class="annotation">
-
+              
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
@@ -581,32 +578,33 @@ Use the special option key “_” to specify a default.</p>
 <p>Check if polyglot has a translation for given key</p>
 
             </div>
-
+            
             <div class="content"><div class='highlight'><pre>Polyglot.prototype.has = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">key</span>) </span>{
   <span class="hljs-keyword">return</span> has(<span class="hljs-keyword">this</span>.phrases, key);
 };</pre></div></div>
-
+            
         </li>
-
-
+        
+        
         <li id="section-19">
             <div class="annotation">
-
+              
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
               <p>export transformPhrase</p>
 
             </div>
-
+            
             <div class="content"><div class='highlight'><pre>Polyglot.transformPhrase = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transform</span>(<span class="hljs-params">phrase, substitutions, locale</span>) </span>{
   <span class="hljs-keyword">return</span> transformPhrase(phrase, substitutions, locale);
 };
 
-<span class="hljs-built_in">module</span>.exports = Polyglot;</pre></div></div>
 
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Polyglot;</pre></div></div>
+            
         </li>
-
+        
     </ul>
   </div>
 </body>

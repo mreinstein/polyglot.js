@@ -8,11 +8,11 @@
     "build": "npm-run-all -p build:*",
     "build:cjs": "rollup index.js --file dist/polyglot.cjs.js --format cjs",
     "build:esm": "rollup -c rollup.config.js index.js --file dist/polyglot.esm.js --format esm",
+    "build:docs": "docco -o docs/ index.js",
     "prepublishOnly": "npm run build",
     "pretest": "npm-run-all -s build lint",
     "test": "mocha test/*.js --reporter spec",
-    "lint": "eslint *.js test/*.js",
-    "docs": "docco -o docs/ index.js"
+    "lint": "eslint *.js test/*.js"
   },
   "repository": {
     "type": "git",
@@ -37,7 +37,7 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "docco": "^0.7.0",
-    "eslint": "^4.19.1",
+    "eslint": "^5.8.0",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-plugin-import": "^2.13.0",
     "mocha": "^3.5.3",
