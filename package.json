@@ -1,6 +1,6 @@
 {
   "name": "polyglot.js",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Give your JavaScript the ability to speak many languages.",
   "main": "dist/polyglot.cjs.js",
   "module": "dist/polyglot.esm.js",
