@@ -3,6 +3,19 @@ polyglot.js
 
 [![Build Status](https://travis-ci.org/mreinstein/polyglot.js.svg?branch=master)](https://travis-ci.org/mreinstein/polyglot.js)
 
+This is a fork of Airbnb's polyglot module.
+
+
+## Why the Fork?
+
+It exists because I want the ability to include polyglot as an es module now. This is accomplished via the `"module"` field in `package.json`, which rollup and webpack already know how to interpret.
+
+At some point the original polyglot team may figure out how to move towards es modules as the default, either via https://nodejs.org/api/esm.html#esm_code_package_json_code_code_type_code_field or some other means. when that happens I'll deprecate this package and point people back there.
+
+In the meantime, this allows you to use es modules today without having to resort to any cjs loader, transformation, or additional build config. :-)
+
+
+## About
 
 polyglot.js is a tiny I18n helper library written in JavaScript, made to work both in the browser and in CommonJS environments (Node). It provides a simple solution for interpolation and pluralization, based off of Airbnb’s experience adding I18n functionality to its Backbone.js and Node apps. 
 
@@ -11,6 +24,7 @@ View the [documentation on Github](http://airbnb.github.com/polyglot.js).
 View the [annotated source](http://airbnb.github.com/polyglot.js/polyglot.html).
 
 Polylglot is agnostic to your translation backend. It doesn’t perform any translation; it simply gives you a way to manage translated phrases from your client- or server-side JavaScript application.
+
 
 ## Installation
 
