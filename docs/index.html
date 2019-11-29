@@ -43,13 +43,12 @@ your client- or server-side JavaScript application.</p>
             
             <div class="content"><div class='highlight'><pre>
 <span class="hljs-keyword">import</span> forEach <span class="hljs-keyword">from</span> <span class="hljs-string">'for-each'</span>;
-<span class="hljs-keyword">import</span> warning <span class="hljs-keyword">from</span> <span class="hljs-string">'warning'</span>;
 <span class="hljs-keyword">import</span> has <span class="hljs-keyword">from</span> <span class="hljs-string">'has'</span>;
 <span class="hljs-keyword">import</span> trim <span class="hljs-keyword">from</span> <span class="hljs-string">'string.prototype.trim'</span>;
 
 
 <span class="hljs-keyword">var</span> warn = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">warn</span>(<span class="hljs-params">message</span>) </span>{
-  warning(<span class="hljs-literal">false</span>, message);
+  <span class="hljs-built_in">console</span>.warn(message);
 };
 
 <span class="hljs-keyword">var</span> replace = <span class="hljs-built_in">String</span>.prototype.replace;
@@ -238,7 +237,7 @@ var defaultTokenRegex = /%\{(.*?)\}/g;</pre></div></div>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
-              <h3 id="transformphrase-phrase-substitutions-locale-">transformPhrase(phrase, substitutions, locale)</h3>
+              <h3 id="transformphrasephrase-substitutions-locale">transformPhrase(phrase, substitutions, locale)</h3>
 <p>Takes a phrase string and transforms it by choosing the correct
 plural form and interpolating it.</p>
 <pre><code>transformPhrase(<span class="hljs-string">'Hello, %{name}!'</span>, {<span class="hljs-attr">name</span>: <span class="hljs-string">'Spike'</span>});
@@ -372,7 +371,7 @@ choose the correct plural form. This is only done if <code>count</code> is set.<
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
-              <h3 id="polyglot-locale-locale-">polyglot.locale([locale])</h3>
+              <h3 id="polyglotlocalelocale">polyglot.locale([locale])</h3>
 <p>Get or set locale. Internally, Polyglot only uses locale for pluralization.</p>
 
             </div>
@@ -391,7 +390,7 @@ choose the correct plural form. This is only done if <code>count</code> is set.<
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
-              <h3 id="polyglot-extend-phrases-">polyglot.extend(phrases)</h3>
+              <h3 id="polyglotextendphrases">polyglot.extend(phrases)</h3>
 <p>Use <code>extend</code> to tell Polyglot how to translate a given key.</p>
 <pre><code>polyglot.extend({
   <span class="hljs-string">"hello"</span>: <span class="hljs-string">"Hello"</span>,
@@ -452,7 +451,7 @@ notation.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
-              <h3 id="polyglot-unset-phrases-">polyglot.unset(phrases)</h3>
+              <h3 id="polyglotunsetphrases">polyglot.unset(phrases)</h3>
 <p>Use <code>unset</code> to selectively remove keys from a polyglot instance.</p>
 <pre><code>polyglot.unset(<span class="hljs-string">"some_key"</span>);
 polyglot.unset({
@@ -487,7 +486,7 @@ the keys that you would like to unset.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
-              <h3 id="polyglot-clear-">polyglot.clear()</h3>
+              <h3 id="polyglotclear">polyglot.clear()</h3>
 <p>Clears all phrases. Useful for special cases, such as freeing
 up memory if you have lots of phrases but no longer need to
 perform any translation. Also used internally by <code>replace</code>.</p>
@@ -507,7 +506,7 @@ perform any translation. Also used internally by <code>replace</code>.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
-              <h3 id="polyglot-replace-phrases-">polyglot.replace(phrases)</h3>
+              <h3 id="polyglotreplacephrases">polyglot.replace(phrases)</h3>
 <p>Completely replace the existing phrases with a new set of phrases.
 Normally, just use <code>extend</code> to add more phrases, but under certain
 circumstances, you may want to make sure no old phrases are lying around.</p>
@@ -528,7 +527,7 @@ circumstances, you may want to make sure no old phrases are lying around.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
-              <h3 id="polyglot-t-key-options-">polyglot.t(key, options)</h3>
+              <h3 id="polyglottkey-options">polyglot.t(key, options)</h3>
 <p>The most-used method. Provide a key, and <code>t</code> will return the
 phrase.</p>
 <pre><code>polyglot.t(<span class="hljs-string">"hello"</span>);
@@ -574,7 +573,7 @@ Use the special option key “_” to specify a default.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
-              <h3 id="polyglot-has-key-">polyglot.has(key)</h3>
+              <h3 id="polyglothaskey">polyglot.has(key)</h3>
 <p>Check if polyglot has a translation for given key</p>
 
             </div>

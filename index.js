@@ -16,13 +16,12 @@
 //
 
 import forEach from 'for-each';
-import warning from 'warning';
 import has from 'has';
 import trim from 'string.prototype.trim';
 
 
 var warn = function warn(message) {
-  warning(false, message);
+  console.warn(message);
 };
 
 var replace = String.prototype.replace;
